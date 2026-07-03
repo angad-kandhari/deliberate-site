@@ -128,10 +128,6 @@ html[data-skin='terminal'] .cmd::after {
 html[data-skin='terminal'] .site-header {
   border-bottom: 1px solid var(--accent-border);
 }
-html[data-skin='terminal'] .logo-mark::before {
-  content: '▉ ';
-  color: var(--accent);
-}
 html[data-skin='terminal'] .logo-text::after {
   content: '@harness';
   color: var(--muted);

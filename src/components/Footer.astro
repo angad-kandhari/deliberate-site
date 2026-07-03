@@ -5,7 +5,13 @@
   <div class="container footer-inner">
     <div class="footer-col">
       <div class="footer-brand">
-        <span class="footer-mark">◐</span>
+        <span class="footer-mark">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <rect x="1.6" y="1.6" width="20.8" height="20.8" rx="5" stroke="currentColor" stroke-width="2" />
+            <path d="M7 8 L11 12 L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M13 16 H17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </span>
         <strong>Deliberate</strong>
       </div>
       <p class="muted footer-tag">Engineering discipline for AI harnesses.</p>
@@ -52,7 +58,8 @@
     gap: 0.5rem;
     color: var(--ink);
   }
-  .footer-mark { color: var(--accent); }
+  .footer-mark { color: var(--accent); display: inline-flex; align-items: center; }
+  .footer-mark svg { display: block; }
   .footer-tag { margin-top: 0.25rem; font-size: 0.9375rem; }
   .footer-label {
     font-family: var(--font-mono);

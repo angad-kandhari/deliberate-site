@@ -22,7 +22,13 @@ try {
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="logo">
-      <span class="logo-mark">◐</span>
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+          <rect x="1.6" y="1.6" width="20.8" height="20.8" rx="5" stroke="currentColor" stroke-width="2" />
+          <path d="M7 8 L11 12 L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M13 16 H17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </span>
       <span class="logo-text">Deliberate</span>
     </a>
     <nav class="nav">
@@ -66,8 +72,10 @@ try {
   .logo:hover { color: var(--accent); }
   .logo-mark {
     color: var(--accent);
-    font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
   }
+  .logo-mark svg { display: block; }
   .nav {
     display: flex;
     gap: 0.25rem;
