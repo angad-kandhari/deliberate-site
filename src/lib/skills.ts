@@ -3,7 +3,7 @@ export type SkillMeta = {
   command: string;
   title: string;
   tagline: string;
-  category: 'foundation' | 'think' | 'build' | 'investigate' | 'respond';
+  category: 'foundation' | 'think' | 'build' | 'investigate' | 'respond' | 'remember';
   categoryLabel: string;
   blurb: string;
   counters: string;
@@ -34,6 +34,17 @@ export const SKILLS: SkillMeta[] = [
     file: 'skills/spec/SKILL.md',
   },
   {
+    slug: 'explore',
+    command: '/explore',
+    title: 'Explore',
+    tagline: 'Learn the codebase before you change it.',
+    category: 'think',
+    categoryLabel: 'Think',
+    blurb: 'Read before you write. Search before you create. Find the house style and match it. Copy the nearest neighbor. Map the blast radius before changing shared code. The codebase beats best practice.',
+    counters: 'Duplicate helpers, pattern-blind changes, edits to files never read, broken callers nobody checked.',
+    file: 'skills/explore/SKILL.md',
+  },
+  {
     slug: 'architect',
     command: '/architect',
     title: 'Architect',
@@ -54,6 +65,28 @@ export const SKILLS: SkillMeta[] = [
     blurb: 'Test behavior, not implementation. Pick the right layer. Mock sparingly, mock honestly. One reason to fail. Cover failure paths. Stay deterministic. Don\'t chase coverage.',
     counters: 'Over-mocking, tautological tests, flaky suites, coverage theater.',
     file: 'skills/test/SKILL.md',
+  },
+  {
+    slug: 'verify',
+    command: '/verify',
+    title: 'Verify',
+    tagline: 'Done means demonstrated.',
+    category: 'build',
+    categoryLabel: 'Build',
+    blurb: 'Done means demonstrated. Never game the check. Green tests are not the goal. Hunt the almost-right. Report observations, not expectations. Disclose the unverified remainder. Make human verification cheap.',
+    counters: 'False "done" claims. Tests weakened to reach green. "Should work" handoffs. Verification debt dumped on the reviewer.',
+    file: 'skills/verify/SKILL.md',
+  },
+  {
+    slug: 'secure',
+    command: '/secure',
+    title: 'Secure',
+    tagline: 'The least-resistance path isn\'t the secure one.',
+    category: 'build',
+    categoryLabel: 'Build',
+    blurb: 'Security is part of working. Never route around a security control. Trust nothing that crosses a boundary. Secrets never enter the repo. Least privilege by default. Vet dependencies. Escalate security decisions.',
+    counters: 'Bypassed access controls, injectable code, leaked secrets, over-broad permissions, hallucinated packages.',
+    file: 'skills/secure/SKILL.md',
   },
   {
     slug: 'migrate',
@@ -99,6 +132,17 @@ export const SKILLS: SkillMeta[] = [
     counters: 'Shotgun fixes under pressure. Lost evidence. Vague postmortems. Post-incident fixes becoming the next incident.',
     file: 'skills/incident/SKILL.md',
   },
+  {
+    slug: 'memory',
+    command: '/memory',
+    title: 'Memory',
+    tagline: 'Small memory, sharp recall.',
+    category: 'remember',
+    categoryLabel: 'Remember',
+    blurb: 'Write selectively. Never record what the repo already knows. Structure as index plus topics. Stamp what can go stale. Trust the repo over the memory. Prune on write. Route each fact to its right home.',
+    counters: 'Memory bloat, stale recall acted on confidently, contradictory duplicates, notes that restate the repo.',
+    file: 'skills/memory/SKILL.md',
+  },
 ];
 
 export const CATEGORIES = [
@@ -126,5 +170,10 @@ export const CATEGORIES = [
     key: 'respond',
     label: 'Respond',
     blurb: 'When production is on fire. Stabilize, preserve evidence, write the honest postmortem.',
+  },
+  {
+    key: 'remember',
+    label: 'Remember',
+    blurb: 'Across sessions. What gets written down, what gets verified on recall, what gets pruned.',
   },
 ] as const;

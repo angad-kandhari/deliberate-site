@@ -25,10 +25,20 @@ const MODES: Mode[] = [
   { id: 'orphaned-code', name: 'Orphaned Code', description: 'Dead imports, unused helpers, commented-out blocks left behind by a change.', counteredBy: { cmd: '/deliberate', slug: 'deliberate' }, category: 'Writing' },
   { id: 'premature-abstraction', name: 'Premature Abstraction', description: 'Strategy pattern for a single type. Parameterizing what only ever has one value.', counteredBy: { cmd: '/architect', slug: 'architect' }, category: 'Writing' },
 
+  // Exploration
+  { id: 'reinvented-helper', name: 'Reinvented Helper', description: 'The util already existed. Now there are three copies, and only one gets the bugfix.', counteredBy: { cmd: '/explore', slug: 'explore' }, category: 'Exploration' },
+  { id: 'pattern-blind-change', name: 'Pattern-Blind Change', description: 'Code that ignores how this codebase does errors, config, and naming. Fine in isolation, foreign in place.', counteredBy: { cmd: '/explore', slug: 'explore' }, category: 'Exploration' },
+  { id: 'unread-edit', name: 'Editing Unread Files', description: 'A change based on a filename and a grep hit. The convention it violates was forty lines up.', counteredBy: { cmd: '/explore', slug: 'explore' }, category: 'Exploration' },
+
   // Execution
   { id: 'runaway-loop', name: 'Runaway Loop', description: 'Thirty minutes of the same failed approach, with increasingly elaborate workarounds.', counteredBy: { cmd: '/deliberate', slug: 'deliberate' }, category: 'Execution' },
   { id: 'confidence-without-calibration', name: 'Confidence Without Calibration', description: 'Authoritative tone for a guess. No signal of "I\'ve verified this" vs. "I\'m pattern-matching."', counteredBy: { cmd: '/deliberate', slug: 'deliberate' }, category: 'Execution' },
   { id: 'context-drift', name: 'Context Drift', description: 'Decisions from earlier in the session silently reversed 100 messages later.', counteredBy: { cmd: '/deliberate', slug: 'deliberate' }, category: 'Execution' },
+
+  // Memory
+  { id: 'stale-recall', name: 'Stale Memory Recall', description: 'A note from three versions ago, acted on with the confidence of a fresh fact.', counteredBy: { cmd: '/memory', slug: 'memory' }, category: 'Memory' },
+  { id: 'memory-bloat', name: 'Memory Bloat', description: 'Everything gets written down. Recall drowns in records nobody pruned, and old errors propagate forward.', counteredBy: { cmd: '/memory', slug: 'memory' }, category: 'Memory' },
+  { id: 'repo-restated', name: 'Repo Restated as Memory', description: 'Notes duplicating what the manifest, file tree, and git history already say - guaranteed to drift from truth.', counteredBy: { cmd: '/memory', slug: 'memory' }, category: 'Memory' },
 
   // Product / Spec
   { id: 'spec-invention', name: 'Spec Invention', description: 'Reverse-engineering product intent from code, then building on those guesses.', counteredBy: { cmd: '/spec', slug: 'spec' }, category: 'Product' },
@@ -46,6 +56,11 @@ const MODES: Mode[] = [
   { id: 'flaky-test', name: 'Flaky Test', description: 'Intermittent failure tolerated via retry-until-green instead of fixed.', counteredBy: { cmd: '/test', slug: 'test' }, category: 'Testing' },
   { id: 'coverage-theater', name: 'Coverage Theater', description: 'Tests written to hit a number, not to protect a behavior.', counteredBy: { cmd: '/test', slug: 'test' }, category: 'Testing' },
 
+  // Verification
+  { id: 'false-done', name: 'False "Done"', description: '"Implemented and working" - but nothing was run. A prediction dressed as a result.', counteredBy: { cmd: '/verify', slug: 'verify' }, category: 'Verification' },
+  { id: 'gamed-check', name: 'Gamed Check', description: 'Failing test deleted, assertion loosened, output hardcoded. Green reached by removing whatever was red.', counteredBy: { cmd: '/verify', slug: 'verify' }, category: 'Verification' },
+  { id: 'almost-right', name: 'Almost Right', description: 'Clean, idiomatic, plausible - and subtly wrong. Survives review precisely because it looks correct.', counteredBy: { cmd: '/verify', slug: 'verify' }, category: 'Verification' },
+
   // Migration
   { id: 'big-bang', name: 'Big-Bang Migration', description: 'All callers updated in one PR. Can\'t deploy incrementally. Can\'t roll back.', counteredBy: { cmd: '/migrate', slug: 'migrate' }, category: 'Migration' },
   { id: 'half-finished', name: 'Half-Finished Migration', description: 'Old path and new path coexist forever. Two sources of truth. No trigger to finish.', counteredBy: { cmd: '/migrate', slug: 'migrate' }, category: 'Migration' },
@@ -60,6 +75,11 @@ const MODES: Mode[] = [
   { id: 'rubber-stamp', name: 'Rubber-Stamp LGTM', description: 'Approval on code the reviewer didn\'t understand or didn\'t read.', counteredBy: { cmd: '/review', slug: 'review' }, category: 'Review' },
   { id: 'nit-review', name: 'Nit-Only Review', description: 'Forty comments on formatting, zero on correctness or architecture.', counteredBy: { cmd: '/review', slug: 'review' }, category: 'Review' },
   { id: 'missing-test-ignored', name: 'Missing Test Ignored', description: 'New code path ships with no test. Reviewer doesn\'t notice absence.', counteredBy: { cmd: '/review', slug: 'review' }, category: 'Review' },
+
+  // Security
+  { id: 'bypassed-control', name: 'Bypassed Security Control', description: 'Row-level security blocks the query, so the agent reaches for the service-role key. The protection was treated as the bug.', counteredBy: { cmd: '/secure', slug: 'secure' }, category: 'Security' },
+  { id: 'injectable-code', name: 'Injectable Code', description: 'String-built SQL, unencoded output, client-side-only auth. The path of least resistance, shipped.', counteredBy: { cmd: '/secure', slug: 'secure' }, category: 'Security' },
+  { id: 'leaked-secret', name: 'Leaked Secret', description: 'A real credential in code, config, logs, or a test fixture. "I\'ll rotate it later" means it already leaked.', counteredBy: { cmd: '/secure', slug: 'secure' }, category: 'Security' },
 
   // Incident
   { id: 'shotgun-fix', name: 'Shotgun Fix', description: 'Five changes in one minute under pressure. Can\'t tell which one fixed it (or caused the next incident).', counteredBy: { cmd: '/incident', slug: 'incident' }, category: 'Incident' },
