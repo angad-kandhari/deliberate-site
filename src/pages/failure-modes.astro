@@ -81,6 +81,11 @@ const MODES: Mode[] = [
   { id: 'injectable-code', name: 'Injectable Code', description: 'String-built SQL, unencoded output, client-side-only auth. The path of least resistance, shipped.', counteredBy: { cmd: '/secure', slug: 'secure' }, category: 'Security' },
   { id: 'leaked-secret', name: 'Leaked Secret', description: 'A real credential in code, config, logs, or a test fixture. "I\'ll rotate it later" means it already leaked.', counteredBy: { cmd: '/secure', slug: 'secure' }, category: 'Security' },
 
+  // Pentest
+  { id: 'unauthorized-probe', name: 'Unauthorized Probing', description: 'Testing a target nobody signed off on. Ownership or written scope is the precondition, not a formality.', counteredBy: { cmd: '/pentest', slug: 'pentest' }, category: 'Pentest' },
+  { id: 'unreproducible-finding', name: 'Unreproducible Finding', description: 'A "vulnerability" that only fired once. If it doesn\'t reproduce on demand, it\'s a hypothesis, not a finding.', counteredBy: { cmd: '/pentest', slug: 'pentest' }, category: 'Pentest' },
+  { id: 'exploit-no-fix', name: 'Exploit Without a Fix', description: 'A finding reported and never closed. On your own code: find it, fix it with secure, confirm it with verify.', counteredBy: { cmd: '/pentest', slug: 'pentest' }, category: 'Pentest' },
+
   // Incident
   { id: 'shotgun-fix', name: 'Shotgun Fix', description: 'Five changes in one minute under pressure. Can\'t tell which one fixed it (or caused the next incident).', counteredBy: { cmd: '/incident', slug: 'incident' }, category: 'Incident' },
   { id: 'lost-evidence', name: 'Lost Evidence', description: 'Stabilization destroys the logs/state needed for root cause. No postmortem possible.', counteredBy: { cmd: '/incident', slug: 'incident' }, category: 'Incident' },

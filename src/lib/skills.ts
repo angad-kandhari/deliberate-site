@@ -89,6 +89,17 @@ export const SKILLS: SkillMeta[] = [
     file: 'skills/secure/SKILL.md',
   },
   {
+    slug: 'pentest',
+    command: '/pentest',
+    title: 'Pentest',
+    tagline: 'Find the holes before an attacker does.',
+    category: 'investigate',
+    categoryLabel: 'Investigate',
+    blurb: 'Authorization first - your own code is fair game, anything else needs written scope. Map inputs to injection sinks. Test against a threat model. Prove findings with safe repro. Control blast radius. Then close the loop: find, fix with secure, confirm with verify.',
+    counters: 'Unauthorized probing, thrashing without a model, unreproducible findings, collateral damage, exploits with no fix.',
+    file: 'skills/pentest/SKILL.md',
+  },
+  {
     slug: 'migrate',
     command: '/migrate',
     title: 'Migrate',
