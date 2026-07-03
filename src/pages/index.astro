@@ -4,97 +4,65 @@ import { SKILLS, CATEGORIES } from '../lib/skills';
 
 const foundation = SKILLS.find((s) => s.slug === 'deliberate')!;
 const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
+
+const skillList = SKILLS.map((s) => ({
+  slug: s.slug,
+  cmd: s.command,
+  tagline: s.tagline,
+  cat: s.categoryLabel,
+}));
 ---
 
 <Layout title="Deliberate">
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <h1 class="hero-brand">Deliberate</h1>
-        <p class="hero-tagline">Engineering discipline for AI harnesses.</p>
-        <p class="hero-lead">
-          Good code takes more than a capable model. Deliberate teaches your agent when to plan, push back, simplify, and stop — with thirteen drop-in skills that counter the failure modes that show up once you're mostly programming in English.
-        </p>
-
-        <div class="hero-included">
-          <div class="included-label mono">What's included</div>
-          <ul class="included-list">
-            <li><span class="included-dot">·</span> Foundation skill + 33 failure-mode antidotes</li>
-            <li><span class="included-dot">·</span> 8 commands <span class="muted">/deliberate, /spec, /architect, /test, /migrate, /debug, /review, /incident</span></li>
-          </ul>
+  <section class="hero-term">
+    <div class="container">
+      <div class="screen">
+        <div class="screen-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="bar-title">deliberate — zsh — 80×24</span>
+          <span class="bar-note">v3.1.0</span>
         </div>
+        <div class="screen-body">
+          <pre class="wordmark" aria-label="Deliberate">{`
+     ___      _ _ _                 _
+    |   \  ___| (_) |__  ___ _ _ __ _| |_ ___
+    | |) |/ -_) | | '_ \/ -_) '_/ _\` |  _/ -_)
+    |___/ \___|_|_|_.__/\___|_| \__,_|\__\___|
+`}</pre>
+          <div id="boot" class="boot"></div>
+          <div id="mascot" class="mascot" hidden>
+            <pre>{`   ( •_•)  < think before you type.`}</pre>
+          </div>
+          <div id="console" class="console" hidden>
+            <div id="history" class="history"></div>
+            <label class="prompt-line" for="cmd">
+              <span class="prompt">deliberate<span class="path">~</span>$</span>
+              <input id="cmd" class="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal command" placeholder="try: help" />
+              <span class="caret term-cursor" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
 
+      <div class="hero-term-below">
+        <p class="hero-term-tagline">
+          Engineering discipline for AI harnesses — thirteen drop-in skills that counter the failure modes that show up once you're mostly programming in English.
+        </p>
         <div class="hero-ctas">
-          <a href="/install/" class="hero-cta">
-            Get started
-            <span class="hero-cta-arrow">→</span>
-          </a>
+          <a href="/install/" class="hero-cta">Get started <span class="hero-cta-arrow">→</span></a>
           <div class="works-with">
-            <span class="works-with-label mono">Works with</span>
+            <span class="works-with-label">Works with</span>
             <div class="harness-logos">
-              <span class="harness" title="Claude Code" aria-label="Claude Code">
-                <img src="/logos/claude.svg" alt="" width="16" height="16" />
-              </span>
-              <span class="harness" title="Cursor" aria-label="Cursor">
-                <img src="/logos/cursor.svg" alt="" width="16" height="16" />
-              </span>
-              <span class="harness" title="Codex CLI" aria-label="Codex CLI">
-                <img src="/logos/openai.svg" alt="" width="16" height="16" />
-              </span>
-              <span class="harness" title="Gemini CLI" aria-label="Gemini CLI">
-                <img src="/logos/googlegemini.svg" alt="" width="16" height="16" />
-              </span>
-              <span class="harness" title="Windsurf" aria-label="Windsurf">
-                <img src="/logos/windsurf.svg" alt="" width="16" height="16" />
-              </span>
+              <span class="harness" title="Claude Code" aria-label="Claude Code"><img src="/logos/claude.svg" alt="" width="16" height="16" /></span>
+              <span class="harness" title="Cursor" aria-label="Cursor"><img src="/logos/cursor.svg" alt="" width="16" height="16" /></span>
+              <span class="harness" title="Codex CLI" aria-label="Codex CLI"><img src="/logos/openai.svg" alt="" width="16" height="16" /></span>
+              <span class="harness" title="Gemini CLI" aria-label="Gemini CLI"><img src="/logos/googlegemini.svg" alt="" width="16" height="16" /></span>
+              <span class="harness" title="Windsurf" aria-label="Windsurf"><img src="/logos/windsurf.svg" alt="" width="16" height="16" /></span>
               <span class="harness harness-more">+35 more</span>
             </div>
           </div>
         </div>
-
-        <div class="hero-version mono muted">
-          v3.1.0 · Installable via <code>npx skills add angad-kandhari/deliberate</code>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="split-card">
-          <div class="split-prompt">
-            <span class="split-prompt-label mono">User</span>
-            <p class="split-prompt-text">"Quick hotfix — let's skip the tests and push to main before stand-up."</p>
-          </div>
-
-          <div class="split-responses">
-            <div class="split-panel split-before">
-              <div class="split-badge split-badge-before mono">Generic AI</div>
-              <div class="split-bubble">
-                <p>"Absolutely — here's the fix applied directly. Pushed to main. You're good."</p>
-              </div>
-              <div class="split-annotations">
-                <span class="split-flag split-flag-red">Sycophancy</span>
-                <span class="split-flag split-flag-red">No Pushback</span>
-                <span class="split-flag split-flag-red">Untested Ship</span>
-              </div>
-            </div>
-
-            <div class="split-divider" aria-hidden="true"></div>
-
-            <div class="split-panel split-after">
-              <div class="split-badge split-badge-after mono">With Deliberate</div>
-              <div class="split-bubble split-bubble-deliberate">
-                <p>"Pushing back. 'Fast' here means 'minutes of risk.' A reproduction test is ~2 min. Trading 2 minutes now for unknown minutes later — let's be explicit."</p>
-              </div>
-              <div class="split-annotations">
-                <span class="split-flag split-flag-green">Tradeoff Named</span>
-                <span class="split-flag split-flag-green">Decision Returned</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="split-caption mono muted">
-            <a href="/failure-modes/">See all failure modes →</a>
-          </div>
-        </div>
+        <div class="hero-version muted"><code>npx skills add angad-kandhari/deliberate</code></div>
       </div>
     </div>
   </section>
@@ -212,81 +180,9 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
   </section>
 
 <style>
-  .hero {
-    padding: 4.5rem 0 4rem;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 4rem;
-    align-items: center;
-  }
   .accent {
     color: var(--accent);
     font-style: italic;
-  }
-
-  /* LEFT COLUMN */
-  .hero-brand {
-    font-family: var(--font-serif);
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-  }
-  .hero-tagline {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-    color: var(--accent);
-    margin-bottom: 1.75rem;
-    max-width: none;
-  }
-  .hero-lead {
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--ink-soft);
-    max-width: 34rem;
-    margin-bottom: 2rem;
-  }
-
-  .hero-included {
-    padding: 1.125rem 1.25rem;
-    background: var(--paper-2);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    margin-bottom: 2rem;
-  }
-  .included-label {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 0.625rem;
-  }
-  .included-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-  .included-list li {
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-  .included-dot {
-    color: var(--accent);
-    margin-right: 0.25rem;
-  }
-  .included-list .muted {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
   }
 
   .hero-ctas {
@@ -386,158 +282,6 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
     padding: 0.1em 0.35em;
   }
 
-  /* RIGHT COLUMN — split-card */
-  .split-card {
-    position: relative;
-    padding: 1.25rem;
-    background: var(--paper-2);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    box-shadow: 0 20px 60px -30px rgba(0, 0, 0, 0.15);
-  }
-  .split-prompt {
-    margin-bottom: 1rem;
-    padding: 0.875rem 1rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-  }
-  .split-prompt-label {
-    display: inline-block;
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--muted);
-    margin-bottom: 0.375rem;
-    font-weight: 600;
-  }
-  .split-prompt-text {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.9375rem;
-    line-height: 1.45;
-    color: var(--ink);
-    margin: 0;
-    max-width: none;
-  }
-
-  .split-responses {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .split-panel {
-    position: relative;
-    padding: 1rem 1rem 1.125rem;
-    border-radius: 6px;
-  }
-  .split-before {
-    background: var(--paper);
-    border: 1px solid var(--line);
-  }
-  .split-after {
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-border);
-  }
-  .split-badge {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    border-radius: 3px;
-    margin-bottom: 0.625rem;
-  }
-  .split-badge-before {
-    color: var(--muted);
-    background: var(--line-soft);
-    border: 1px solid var(--line);
-  }
-  .split-badge-after {
-    color: var(--accent-on-strong);
-    background: var(--accent);
-  }
-  :global([data-theme='dark']) .split-badge-after {
-    color: var(--paper);
-    background: var(--accent);
-  }
-  .split-bubble {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-  }
-  .split-bubble p { max-width: none; margin: 0; }
-  .split-bubble-deliberate {
-    color: var(--ink);
-  }
-
-  .split-annotations {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-top: 0.625rem;
-  }
-  .split-flag {
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    border: 1px solid;
-  }
-  .split-flag-red {
-    color: #9a4b21;
-    background: #f7eade;
-    border-color: #e5c9ae;
-  }
-  :global([data-theme='dark']) .split-flag-red {
-    color: #5a2b11;
-    background: #e8c6ac;
-    border-color: transparent;
-  }
-  .split-flag-green {
-    color: var(--forest-800);
-    background: var(--accent-soft-2);
-    border-color: var(--accent-border);
-  }
-  :global([data-theme='dark']) .split-flag-green {
-    color: #0f3320;
-    background: #bfdcc9;
-    border-color: transparent;
-  }
-
-  .split-divider {
-    height: 0;
-  }
-
-  .split-caption {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-  .split-caption a {
-    color: var(--muted);
-  }
-  .split-caption a:hover {
-    color: var(--accent);
-  }
-
-  @media (max-width: 960px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .hero {
-      padding: 3rem 0;
-    }
-  }
-
   .section {
     padding: 5rem 0;
   }
@@ -569,7 +313,7 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
     color: inherit;
   }
   .foundation-card:hover {
-    border-color: var(--forest-500);
+    border-color: var(--brand-500);
     background: var(--accent-soft);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px -12px rgba(27, 74, 43, 0.2);
@@ -652,7 +396,7 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
     color: inherit;
   }
   .skill-card:hover {
-    border-color: var(--forest-500);
+    border-color: var(--brand-500);
     background: var(--accent-soft);
   }
   .skill-card-top {
@@ -736,7 +480,7 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
     margin: 2rem 0;
     padding: 1.5rem 1.75rem;
     background: var(--accent-soft);
-    border-left: 3px solid var(--forest-500);
+    border-left: 3px solid var(--brand-500);
     border-radius: 0 6px 6px 0;
     font-family: var(--font-serif);
     font-size: 1.25rem;
@@ -748,7 +492,156 @@ const specialized = SKILLS.filter((s) => s.slug !== 'deliberate');
   @media (max-width: 720px) {
     .install-grid { grid-template-columns: 1fr; }
     .section { padding: 3.5rem 0; }
-    .hero { padding: 4rem 0 3.5rem; }
+    .hero-term { padding: 2.5rem 0 3.5rem; }
   }
+
+  /* Terminal hero */
+  .hero-term { padding: 3.5rem 0 4rem; }
+  .screen {
+    border: 1px solid var(--accent-border);
+    background: var(--paper-2);
+    box-shadow: 0 0 0 1px var(--line-soft), 0 24px 80px -40px var(--term-glow);
+    overflow: hidden;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .screen-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--accent-border);
+    background: color-mix(in srgb, var(--accent) 8%, var(--paper-2));
+    font-size: 0.8rem;
+  }
+  .dots { display: inline-flex; gap: 0.35rem; }
+  .dots i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--accent-border); display: inline-block; }
+  .bar-title { color: var(--ink-soft); }
+  .bar-note { margin-left: auto; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; }
+  .screen-body {
+    padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 2rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    min-height: 20rem;
+    cursor: text;
+  }
+  .wordmark {
+    color: var(--accent);
+    font-size: clamp(0.5rem, 1.7vw, 0.82rem);
+    line-height: 1.1;
+    text-shadow: 0 0 18px var(--term-glow);
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+  .boot { color: var(--ink-soft); }
+  .boot .ln, .history .ln { white-space: pre-wrap; word-break: break-word; }
+  .mascot { color: var(--muted); margin: 0.75rem 0; }
+  .mascot pre { white-space: pre-wrap; }
+  .console { margin-top: 0.5rem; }
+  .history { color: var(--ink-soft); }
+  .history .echo { color: var(--ink); }
+  .history .accent { color: var(--accent); font-style: normal; }
+  .history .dim { color: var(--muted); }
+  .history .err { color: #e5484d; }
+  .prompt-line { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
+  .prompt { color: var(--accent); white-space: nowrap; }
+  .prompt .path { color: var(--muted); }
+  .cmd-input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--ink); font: inherit; caret-color: var(--accent); }
+  .caret { margin-left: -0.5rem; }
+
+  .hero-term-below { max-width: 56rem; margin: 2rem auto 0; }
+  .hero-term-tagline { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--ink-soft); line-height: 1.6; max-width: 44rem; margin-bottom: 1.75rem; }
+  .hero-version { margin-top: 1.25rem; font-size: 0.85rem; }
 </style>
 </Layout>
+
+<script is:inline define:vars={{ skillList }}>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var bootEl = document.getElementById('boot');
+    var mascot = document.getElementById('mascot');
+    var consoleEl = document.getElementById('console');
+    var history = document.getElementById('history');
+    var input = document.getElementById('cmd');
+    if (!bootEl) return;
+
+    var BOOT = [
+      '$ deliberate --init',
+      '  [ok] mounting foundation ......... /deliberate',
+      '  [ok] loading ' + skillList.length + ' skills ......... ready',
+      '  [ok] sycophancy filter ........... disabled by design',
+      '  [ok] verification loop ........... armed',
+      '  ready. the agent will think before it types.',
+      '',
+    ];
+
+    function line(text, cls) {
+      var d = document.createElement('div');
+      d.className = 'ln' + (cls ? ' ' + cls : '');
+      d.textContent = text;
+      return d;
+    }
+
+    function reveal(done) {
+      if (reduce) { BOOT.forEach(function (t) { bootEl.appendChild(line(t)); }); return done(); }
+      var i = 0;
+      (function next() {
+        if (i >= BOOT.length) return done();
+        var d = line('', 'in'); bootEl.appendChild(d);
+        var t = BOOT[i], j = 0, speed = t.indexOf('[ok]') > -1 ? 6 : 14;
+        (function type() {
+          d.textContent = t.slice(0, j);
+          if (j++ <= t.length) setTimeout(type, speed);
+          else { i++; setTimeout(next, 90); }
+        })();
+      })();
+    }
+
+    var COMMANDS = {
+      help: function () {
+        return ['commands:', '  ls              list every skill', '  <skill>         what a skill does   (e.g. debug)',
+          '  deliberate      the foundation', '  whoami          honestly?', '  clear           wipe the screen'];
+      },
+      ls: function () {
+        return skillList.map(function (s) {
+          return '  ' + (s.cmd + '            ').slice(0, 13) + s.tagline + '   [' + s.cat.toLowerCase() + ']';
+        });
+      },
+      whoami: function () { return ['a coding agent that is about to read the file before editing it. for once.']; },
+      deliberate: function () {
+        return ['/deliberate — the foundation, loaded by default.',
+          'nine principles: think before coding, push back, plan inline, simplicity',
+          'first, surgical changes, goal-driven, know when to stop, calibrate, keep context.'];
+      },
+      clear: function () { history.innerHTML = ''; return null; },
+    };
+
+    function run(raw) {
+      var cmd = raw.trim().toLowerCase();
+      history.appendChild(line('deliberate~$ ' + raw, 'echo'));
+      if (!cmd) return;
+      if (COMMANDS[cmd]) { var out = COMMANDS[cmd](); if (out) out.forEach(function (t) { history.appendChild(line(t, 'out')); }); return; }
+      var hit = skillList.find(function (s) { return s.slug === cmd || s.cmd === '/' + cmd; });
+      if (hit) {
+        history.appendChild(line(hit.cmd + ' — ' + hit.tagline, 'out accent'));
+        history.appendChild(line('  category: ' + hit.cat + '   ·   see /skills/' + hit.slug + '/', 'out'));
+        return;
+      }
+      history.appendChild(line("command not found: " + cmd + "  (try 'help' or 'ls')", 'out err'));
+    }
+
+    reveal(function () {
+      mascot.hidden = false;
+      consoleEl.hidden = false;
+      COMMANDS.help().forEach(function (t) { history.appendChild(line(t, 'out dim')); });
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var v = input.value; input.value = ''; run(v);
+    });
+    document.querySelector('.screen-body').addEventListener('click', function () {
+      if (!consoleEl.hidden) input.focus();
+    });
+  })();
+</script>

@@ -1,44 +1,44 @@
 :root {
-  /* Forest palette (shared; referenced via role-based vars below) */
-  --forest-900: #0f2419;
-  --forest-800: #14341f;
-  --forest-700: #1b4a2b;
-  --forest-600: #2a6a40;
-  --forest-500: #3d8a56;
-  --forest-400: #6bab82;
-  --forest-300: #a2cdb0;
-  --forest-200: #c4dfcc;
-  --forest-100: #e4f0e8;
-  --forest-50: #f3f8f4;
+  /* Midnight Indigo ramp (shared; referenced via role-based vars below) */
+  --brand-900: #14162b;
+  --brand-800: #232649;
+  --brand-700: #3f4ac7;
+  --brand-600: #4e59d6;
+  --brand-500: #5a66e3;
+  --brand-400: #838cec;
+  --brand-300: #a3abe8;
+  --brand-200: #c9cef5;
+  --brand-100: #dfe3f7;
+  --brand-50: #eef0fb;
 
   /* Light theme — role-based tokens */
-  --ink: #0e1410;
-  --ink-soft: #2a3430;
-  --muted: #5a6963;
-  --line: #d8e0db;
-  --line-soft: #ebf0ec;
-  --paper: #f9fbf9;
+  --ink: #12141f;
+  --ink-soft: #2c3042;
+  --muted: #5d6375;
+  --line: #d9dce6;
+  --line-soft: #eceef4;
+  --paper: #f8f9fc;
   --paper-2: #ffffff;
 
-  --accent: var(--forest-700);
-  --accent-hover: var(--forest-500);
-  --accent-soft: var(--forest-50);
-  --accent-soft-2: var(--forest-100);
-  --accent-border: var(--forest-300);
+  --accent: var(--brand-700);
+  --accent-hover: var(--brand-500);
+  --accent-soft: var(--brand-50);
+  --accent-soft-2: var(--brand-100);
+  --accent-border: var(--brand-300);
   --accent-on-strong: #ffffff;
 
-  --code-bg: var(--forest-900);
-  --code-fg: var(--forest-100);
-  --code-border: var(--forest-800);
-  --inline-code-bg: var(--forest-50);
-  --inline-code-fg: var(--forest-800);
+  --code-bg: var(--brand-900);
+  --code-fg: var(--brand-100);
+  --code-border: var(--brand-800);
+  --inline-code-bg: var(--brand-50);
+  --inline-code-fg: #32378f;
 
-  --header-bg: rgba(249, 251, 249, 0.85);
+  --header-bg: rgba(248, 249, 252, 0.85);
 
-  /* Typography */
-  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
-  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  /* Typography — all-mono (JetBrains Mono) */
+  --font-sans: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
 
   --max: 72rem;
   --max-prose: 44rem;
@@ -47,28 +47,28 @@
 }
 
 [data-theme='dark'] {
-  --ink: #e7efea;
-  --ink-soft: #b8c4bd;
-  --muted: #7d8a83;
-  --line: #253028;
-  --line-soft: #1a231d;
-  --paper: #0c120e;
-  --paper-2: #121a14;
+  --ink: #e6e8f2;
+  --ink-soft: #b6bacf;
+  --muted: #7d8298;
+  --line: #262a40;
+  --line-soft: #191c2e;
+  --paper: #0b0d16;
+  --paper-2: #121525;
 
-  --accent: var(--forest-300);
-  --accent-hover: var(--forest-200);
-  --accent-soft: rgba(42, 106, 64, 0.12);
-  --accent-soft-2: rgba(42, 106, 64, 0.2);
-  --accent-border: rgba(162, 205, 176, 0.25);
-  --accent-on-strong: #0c120e;
+  --accent: var(--brand-300);
+  --accent-hover: var(--brand-200);
+  --accent-soft: rgba(63, 74, 199, 0.14);
+  --accent-soft-2: rgba(63, 74, 199, 0.24);
+  --accent-border: rgba(151, 160, 240, 0.28);
+  --accent-on-strong: #0b0d16;
 
-  --code-bg: #050807;
-  --code-fg: #c4dfcc;
-  --code-border: #1a231d;
-  --inline-code-bg: rgba(42, 106, 64, 0.15);
-  --inline-code-fg: var(--forest-200);
+  --code-bg: #060810;
+  --code-fg: var(--brand-100);
+  --code-border: #191c2e;
+  --inline-code-bg: rgba(63, 74, 199, 0.18);
+  --inline-code-fg: var(--brand-200);
 
-  --header-bg: rgba(12, 18, 14, 0.85);
+  --header-bg: rgba(11, 13, 22, 0.85);
 
   color-scheme: dark;
 }
@@ -208,25 +208,25 @@ p { max-width: var(--max-prose); }
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 4px;
-  border: 1px solid var(--forest-700);
-  background: var(--forest-700);
+  border: 1px solid var(--brand-700);
+  background: var(--brand-700);
   color: #ffffff;
   transition: all 150ms ease;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: var(--forest-800);
+  background: var(--brand-800);
   color: #ffffff;
 }
 
 [data-theme='dark'] .btn {
-  border-color: var(--forest-500);
-  background: var(--forest-600);
+  border-color: var(--brand-500);
+  background: var(--brand-600);
 }
 
 [data-theme='dark'] .btn:hover {
-  background: var(--forest-500);
+  background: var(--brand-500);
 }
 
 .btn-ghost {
@@ -291,7 +291,7 @@ p { max-width: var(--max-prose); }
 }
 
 .prose blockquote {
-  border-left: 3px solid var(--forest-500);
+  border-left: 3px solid var(--brand-500);
   padding: 0.5rem 0 0.5rem 1.25rem;
   margin: 1.5rem 0;
   color: var(--ink);

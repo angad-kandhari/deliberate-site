@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/terminal-skin.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -13,7 +14,7 @@ const fullTitle = title === 'Deliberate' ? title : `${title} — Deliberate`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-skin="terminal">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,17 +27,16 @@ const fullTitle = title === 'Deliberate' ? title : `${title} — Deliberate`;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#f9fbf9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c120e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0d16" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script is:inline>
       (function () {
         try {
           var stored = localStorage.getItem('theme');
-          var theme = stored || 'dark';
-          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.setAttribute('data-theme', stored || 'dark');
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
