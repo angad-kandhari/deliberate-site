@@ -19,17 +19,31 @@ import Layout from '../layouts/Layout.astro';
         <div class="step-num mono">01</div>
         <div class="step-body">
           <div class="step-recommended">
-            <span class="recommended-tag">Recommended</span>
+            <span class="recommended-tag">Claude Code</span>
+            <h2 class="step-title">Install as a plugin</h2>
+          </div>
+          <p class="step-p">Installs all thirteen skills <strong>and</strong> a session-start hook that injects a discipline-check before the agent's first move — so the skills actually fire instead of sitting unread.</p>
+          <pre><code>/plugin marketplace add angad-kandhari/deliberate
+/plugin install deliberate@deliberate</code></pre>
+          <p class="step-p muted">Passive skills get invoked as little as ~6% of the time; the activation hook is what closes that gap. Opt-in <a href="https://github.com/angad-kandhari/deliberate/tree/main/hooks/enforcement" target="_blank" rel="noopener">enforcement hooks</a> add deterministic gates for the non-negotiables.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num mono">02</div>
+        <div class="step-body">
+          <div class="step-recommended">
+            <span class="recommended-tag">Cross-tool</span>
             <h2 class="step-title">Install via the <code>skills</code> CLI</h2>
           </div>
-          <p class="step-p">One command. Installs all thirteen skills into your project for Cursor, Claude Code, Gemini CLI, Codex CLI, and 40+ other agents.</p>
+          <p class="step-p">One command. Installs all thirteen skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and 40+ other agents. (Skills only — no activation hook; use the plugin above for Claude Code.)</p>
           <pre><code>npx skills add angad-kandhari/deliberate</code></pre>
           <p class="step-p muted">Works with Cursor, Claude Code, Codex, Gemini, Windsurf, Cline, Continue, Goose, Kilo, Roo, and more. Powered by <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener">vercel-labs/skills</a>.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-num mono">02</div>
+        <div class="step-num mono">03</div>
         <div class="step-body">
           <h2 class="step-title">Or copy the files manually</h2>
           <p class="step-p">Prefer to see and control what lands in your repo? Clone and copy.</p>
@@ -41,10 +55,13 @@ cp -r /tmp/deliberate/skills ./</code></pre>
           <pre><code># CLAUDE.md
 
 Follow the guidelines in @skills/deliberate/SKILL.md for all code changes.
-When working on features against a PRD, also follow @skills/spec/SKILL.md.
+When building against a PRD, also follow @skills/spec/SKILL.md.
+Before adding code to unfamiliar code, also follow @skills/explore/SKILL.md.
 When debugging, also follow @skills/debug/SKILL.md.
-When reviewing PRs, also follow @skills/review/SKILL.md.
 When writing tests, also follow @skills/test/SKILL.md.
+Before claiming work is done, also follow @skills/verify/SKILL.md.
+When touching auth, input, or secrets, also follow @skills/secure/SKILL.md.
+When reviewing a diff, also follow @skills/review/SKILL.md.
 When crossing component boundaries, also follow @skills/architect/SKILL.md.
 When planning a migration, also follow @skills/migrate/SKILL.md.
 When responding to an incident, also follow @skills/incident/SKILL.md.</code></pre>
@@ -52,8 +69,8 @@ When responding to an incident, also follow @skills/incident/SKILL.md.</code></p
           <h3 class="tool-title">Cursor</h3>
           <p class="step-p">Drop the skill folders into <code>.cursor/rules/</code>, or reference from <code>.cursorrules</code>.</p>
 
-          <h3 class="tool-title">Codex / Gemini / other agents</h3>
-          <p class="step-p">Include the files in your project context or system prompt. Plain markdown with frontmatter works everywhere.</p>
+          <h3 class="tool-title">Codex / Gemini / other agents (AGENTS.md)</h3>
+          <p class="step-p">Copy or symlink the repo's <code>AGENTS.md</code> — a lean always-on core plus a table pointing to the full skills. Read natively by Codex, Copilot, Cursor, Windsurf, Aider, Zed, Gemini CLI, and ~28 other tools.</p>
 
           <h3 class="tool-title">Paste-in fallback</h3>
           <p class="step-p">No config? Paste the contents of <code>skills/deliberate/SKILL.md</code> into your agent's system prompt or custom instructions. Done.</p>
@@ -61,7 +78,7 @@ When responding to an incident, also follow @skills/incident/SKILL.md.</code></p
       </div>
 
       <div class="step">
-        <div class="step-num mono">03</div>
+        <div class="step-num mono">04</div>
         <div class="step-body">
           <h2 class="step-title">Load skills situationally, not all at once</h2>
           <p class="step-p">

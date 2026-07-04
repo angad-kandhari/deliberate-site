@@ -20,7 +20,7 @@ const skillList = SKILLS.map((s) => ({
         <div class="screen-bar">
           <span class="dots"><i></i><i></i><i></i></span>
           <span class="bar-title">deliberate — zsh — 80×24</span>
-          <span class="bar-note">v3.2.0</span>
+          <span class="bar-note">v3.3.0</span>
         </div>
         <div class="screen-body">
           <pre class="wordmark" aria-label="Deliberate">{`
@@ -141,12 +141,13 @@ const skillList = SKILLS.map((s) => ({
       <div class="install-grid">
         <div class="install-card install-card-primary">
           <div class="install-head">
-            <span class="recommended-tag">Recommended</span>
-            <span class="eyebrow">One-liner</span>
+            <span class="recommended-tag">Claude Code</span>
+            <span class="eyebrow">Plugin</span>
           </div>
-          <pre><code>npx skills add angad-kandhari/deliberate</code></pre>
+          <pre><code>/plugin marketplace add angad-kandhari/deliberate
+/plugin install deliberate@deliberate</code></pre>
           <p class="install-blurb muted">
-            Installs all thirteen skills. Works with Cursor, Claude Code, Codex, Gemini, and 40+ other agents via <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener">vercel-labs/skills</a>.
+            All thirteen skills plus a session-start hook so they actually fire. Cross-tool? <code>npx skills add angad-kandhari/deliberate</code> works with 40+ agents.
           </p>
         </div>
 
