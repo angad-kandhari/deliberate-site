@@ -160,3 +160,32 @@ html[data-skin='terminal'] .term-cursor::after {
   html[data-skin='terminal'] .cmd::after,
   html[data-skin='terminal'] .term-cursor::after { animation: none; }
 }
+
+/* Horizon grid: a receding wireframe floor at the bottom of the viewport.
+   Visual continuity with the homepage's WebGL world on reading pages (and
+   on the flat-fallback homepage). Immersive mode has the real thing. */
+html[data-skin='terminal']:not(.immersive) body::after {
+  content: '';
+  position: fixed;
+  left: -25vw;
+  right: -25vw;
+  bottom: 0;
+  height: 44vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 30%, transparent) 0 1px,
+      transparent 1px 64px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--accent) 30%, transparent) 0 1px,
+      transparent 1px 48px
+    );
+  transform: perspective(34vh) rotateX(58deg);
+  transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 90%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 90%);
+}

@@ -13,8 +13,8 @@ const skillList = SKILLS.map((s) => ({
 }));
 ---
 
-<Layout title="Deliberate">
-  <section class="hero-term">
+<Layout title="Deliberate" immersive>
+  <section class="hero-term" id="hero" data-station>
     <div class="container">
       <div class="screen">
         <div class="screen-bar">
@@ -67,7 +67,7 @@ const skillList = SKILLS.map((s) => ({
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" id="foundation" data-station>
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">01 — Foundation</div>
@@ -91,7 +91,7 @@ const skillList = SKILLS.map((s) => ({
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="skills" data-station>
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">02 — Language</div>
@@ -128,7 +128,7 @@ const skillList = SKILLS.map((s) => ({
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" id="install" data-station>
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">03 — Install</div>
@@ -164,7 +164,7 @@ const skillList = SKILLS.map((s) => ({
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="why" data-station>
     <div class="container container-prose">
       <div class="eyebrow">Why</div>
       <h2 class="why-title">The models will keep writing code. <span class="accent">How</span> they write it is still up to us.</h2>
@@ -554,6 +554,72 @@ const skillList = SKILLS.map((s) => ({
   .hero-term-tagline { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--ink-soft); line-height: 1.6; max-width: 44rem; margin-bottom: 1.75rem; }
   .hero-version { margin-top: 1.25rem; font-size: 0.85rem; }
 </style>
+
+<style is:global>
+  /* ---------------------------------------------------------------- */
+  /* IMMERSIVE MODE — scroll-driven 3D flight. Only applies when the  */
+  /* gate script in Layout added .immersive (WebGL + no reduced       */
+  /* motion). Without it the page renders exactly as before.          */
+  /* ---------------------------------------------------------------- */
+
+  /* The camera lerp does the easing; native smooth scroll would double it. */
+  html.immersive { scroll-behavior: auto; }
+
+  /* Tall sections give each station its scroll span. */
+  html.immersive #hero { min-height: 175vh; }
+  html.immersive #foundation { min-height: 210vh; }
+  html.immersive #skills { min-height: 270vh; }
+  html.immersive #install { min-height: 210vh; }
+  html.immersive #why { min-height: 190vh; }
+
+  /* The WebGL canvas is the backdrop — section fills would hide it. */
+  html.immersive [data-station] {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  /* Containers become sticky HUD panels; --sp (set by scroll.ts on the
+     section) fades them out as the camera departs for the next station. */
+  html.immersive [data-station] > .container {
+    position: sticky;
+    top: clamp(4.75rem, 9vh, 6.5rem);
+    max-height: calc(100svh - 8rem);
+    overflow-y: auto;
+    opacity: clamp(0, calc((0.88 - var(--sp, 0)) * 4), 1);
+  }
+  /* The last stop never fades — it hands over to the footer. */
+  html.immersive #why > .container { opacity: 1; }
+
+  /* Terminal-window chrome for the non-hero panels. */
+  html.immersive [data-station]:not(#hero) > .container {
+    max-width: 56rem;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    border: 1px solid var(--accent-border);
+    box-shadow: 0 0 0 1px var(--line-soft), 0 24px 80px -40px var(--term-glow);
+    padding: 2.25rem clamp(1.25rem, 3vw, 2.5rem);
+  }
+  /* On wide screens, slide panels aside (alternating with the S-curve)
+     so the station structures stay in view next to them. */
+  @media (min-width: 90rem) {
+    html.immersive #foundation > .container { transform: translateX(13vw); }
+    html.immersive #skills > .container { transform: translateX(-13vw); }
+    html.immersive #install > .container { transform: translateX(13vw); }
+  }
+
+  html.immersive [data-station] > .container::-webkit-scrollbar { width: 6px; }
+  html.immersive [data-station] > .container::-webkit-scrollbar-thumb {
+    background: var(--accent-border);
+  }
+
+  html.immersive .hero-term { padding: 0; }
+  html.immersive .section { padding: 0; }
+</style>
+
+<script>
+  import { initHomeScene } from '../scenes/home';
+  initHomeScene();
+</script>
 </Layout>
 
 <script is:inline define:vars={{ skillList }}>

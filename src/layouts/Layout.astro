@@ -7,9 +7,10 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  immersive?: boolean;
 }
 
-const { title, description = 'Engineering discipline for AI harnesses. A drop-in skill library for LLM coding agents.' } = Astro.props;
+const { title, description = 'Engineering discipline for AI harnesses. A drop-in skill library for LLM coding agents.', immersive = false } = Astro.props;
 const fullTitle = title === 'Deliberate' ? title : `${title} — Deliberate`;
 ---
 
@@ -42,6 +43,20 @@ const fullTitle = title === 'Deliberate' ? title : `${title} — Deliberate`;
         }
       })();
     </script>
+    {immersive && (
+      <script is:inline>
+        // Opt into the 3D flight only when the client can carry it; everyone
+        // else (no WebGL, reduced motion, no JS) keeps the flat page.
+        (function () {
+          try {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var c = document.createElement('canvas');
+            if (!(c.getContext('webgl2') || c.getContext('webgl'))) return;
+            document.documentElement.classList.add('immersive');
+          } catch (e) {}
+        })();
+      </script>
+    )}
   </head>
   <body>
     <Header />
